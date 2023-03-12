@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGN UP PAGE...</title>
+</head>
+<body>
+<form onsubmit="saveMyDetails(event)">
+    <h3> SIGN UP PAGE</h3>
+    <label>Name</label>
+            <input id="name" type="text" name="name" size="35" ><br>
+
+    <label>Email-id</label>
+            <input id="email" type="email" name="email" required size="32" ><br>
+
+    <label>Password</label>
+            <input id="password" type="password" name="password" required size="30" ><br>
+
+    <button> SIGN UP </button>
+</form>
+<ul id="allSignUps"> </ul>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+ <script>
+        async function saveMyDetails(event){
+                    event.preventDefault()
+                    const name = document.getElementById('name').value
+                    const email = document.getElementById('email').value
+                    const password = document.getElementById('password').value
+
+                    const myObject = {
+                        name,
+                        email,
+                        password
+                    }
+                    try{
+                        const abc = await axios.post("http://localhost:4000/user/add-user", myObject) 
+                        showNewUserOnScreen(abc.data.newExpenseDetail)
+                    }
+                       
+                    catch(err){
+                        console.log("Error Block: ",err)
+                    }                  
+
+                }
+
+
+
+
+
+
+
+
+
+ </script>
+
+
+
+</body>
+</html>
